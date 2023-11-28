@@ -31,7 +31,7 @@
       wait_for_connection:
         delay: 30
         timeout: 300
-      loop: "{{ ec2.instances }}"
+      loop: "{{ ec2_instance_result.instances }}"
 
 - name: Configure EC2
   hosts: launched
