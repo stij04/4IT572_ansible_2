@@ -18,19 +18,19 @@
         aws_access_key: "{{access_key}}"
         aws_secret_key: "{{secret_key}}"
         security_token: "{{session_token}}"
-      register: ec2_instance
+      register: ec2
     - name: Add instance host to group
       add_host:
-        hostname: "{{ item.public_ip_adress }}"
+        hostname: "{{ item.public_ip }}"
         groupname: launched
-      loop: "{{ ec2_instance.instances }}"
+      loop: "{{ ec2.instances }}"
 
     - name: Wait for SSH connection
       delegate_to: "{{ item.public_dns_name }}"
       wait_for_connection:
         delay: 30
         timeout: 300
-      loop: "{{ ec2_instance.instances }}"
+      loop: "{{ ec2.instances }}"
 
 - name: Configure EC2
   hosts: launched
