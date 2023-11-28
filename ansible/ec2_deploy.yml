@@ -15,15 +15,16 @@
         wait: yes
         count: 1
         security_group: eshop
-        aws_access_key: "{{access_key}}"
-        aws_secret_key: "{{secret_key}}"
-        security_token: "{{session_token}}"
-      register: ec2
+        aws_access_key: "{{ access_key }}"
+        aws_secret_key: "{{ secret_key }}"
+        security_token: "{{ session_token }}"
+      register: ec2_instance_result
+
     - name: Add instance host to group
       add_host:
-        hostname: "{{ item.public_ip }}"
+        hostname: "{{ item.public_ip_address }}"
         groupname: launched
-      loop: "{{ ec2.instances }}"
+      loop: "{{ ec2_instance_result.instances }}"
 
     - name: Wait for SSH connection
       delegate_to: "{{ item.public_dns_name }}"
