@@ -61,9 +61,6 @@
       git:
         repo: 'https://github.com/vfalada/4IT572_docker.git'
         dest: ./app
-    - name: Build docker with eshop
-      shell: cd app && docker image build -t myeshop:latest . || true
-      become: yes
     - name: Build an image and push it to a private repo
       docker_image:
         build:
