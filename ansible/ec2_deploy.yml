@@ -61,8 +61,11 @@
       git:
         repo: 'https://github.com/vfalada/4IT572_docker.git'
         dest: ./app
+    - name: Switch to app folder
+      shell: cd app
+      become: yes
     - name: Build docker with eshop
-      shell: docker build -f app/Dockerfile -t myeshop:latest .
+      shell: docker build -t myeshop:latest .
       become: yes
     - name: Run Docker with eshop
       shell: docker run -p 80:3000 myeshop
