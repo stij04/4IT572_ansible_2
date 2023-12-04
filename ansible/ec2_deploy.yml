@@ -9,7 +9,7 @@
         image_id: ami-0230bd60aa48260c6
         region: us-east-1
         key_name: devops
-        vpc_subnet_id: subnet-07218a5203cede9fc
+        vpc_subnet_id: subnet-024292384229d7db3
         network:
             assign_public_ip: yes
         wait: yes
@@ -59,7 +59,7 @@
       become: yes
     - name: Get project files from git
       git:
-        repo: 'https://github.com/vfalada/4IT572_docker.git'
+        repo: 'https://github.com/stij04/4IT572_docker_stij04.git'
         dest: ./app
     - name: Build an image and push it to a private repo
       docker_image:
